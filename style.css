@@ -27,14 +27,29 @@ body {
     background-color: rgb(230, 230, 230);
 }
 
-.screen{
+.screen-div{
     display: flex;
-    height: 150px;
+    flex-direction: column;
+    box-sizing: border-box;
+    align-items:flex-start;
+    justify-content: space-evenly;
     width: 325px;
+    height: 150px;
+    padding-top: 8px;
+    margin-top: 14px;
     border-radius: 8px;
-    background-color:rgb(170, 187, 170);
+    background-color:rgb(98, 185, 255);
 }
 
+.screen{
+    width: 320px;
+    word-wrap: break-word;
+}
+
+.screen-down{
+    width: 320px;
+    word-wrap: break-word;
+}
 
 .buttons-div{
     display: flex;
@@ -68,7 +83,7 @@ body {
 }
 
 .btn:hover{
-    background-color: orange;
+    background-color: rgb(255, 166, 0);
 }
 
 .clear-del-zero-dot{
