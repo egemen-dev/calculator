@@ -9,37 +9,48 @@
 </head>
 <body>
     <div class="calculator">
-        <div class="screen">
-
+        <div class="screen-div">
+            <div class="screen"></div>
+            <div class="screen-down"></div>
         </div>
         <div class="buttons-div">
+
             <div class="buttons-div-nums">
-                <div class="clear-del-zero-dot">
-                    <button class="btn zero">All Clear</button>
-                    <button class="btn">⟵</button>
+
+                <div class="cleaning">
+                    <div class="clear-del-zero-dot">
+                        <button class="btn zero AC">All Clear</button>
+                        <button class="btn"> ⟵ </button>
+                    </div>
                 </div>
-                <div class="one-nine-div">
-                    <button class="btn num">9</button>
-                    <button class="btn num">8</button>
-                    <button class="btn num">7</button>
-                    <button class="btn num">6</button>
-                    <button class="btn num">5</button>
-                    <button class="btn num">4</button>
-                    <button class="btn num">3</button>
-                    <button class="btn num">2</button>
-                    <button class="btn num">1</button>
+                
+                <div class="num-related">
+                    <div class="one-nine-div">
+                        <button class="btn num" id="9">9</button>
+                        <button class="btn num" id="8">8</button>
+                        <button class="btn num" id="7">7</button>
+                        <button class="btn num" id="6">6</button>
+                        <button class="btn num" id="5">5</button>
+                        <button class="btn num" id="4">4</button>
+                        <button class="btn num" id="3">3</button>
+                        <button class="btn num" id="2">2</button>
+                        <button class="btn num" id="1">1</button>
+                    </div>
+                    <div class="clear-del-zero-dot">
+                        <button class="btn zero num" id="0">0</button>
+                        <button class="btn num" id=".">.</button>
+                    </div>
                 </div>
-                <div class="clear-del-zero-dot">
-                    <button class="btn zero num">0</button>
-                    <button class="btn num">.</button>
-                </div>
+
             </div>    
-            <div class="operators">
-                <button class="btn">÷</button>
-                <button class="btn">×</button>
-                <button class="btn">-</button>
-                <button class="btn">+</button>
-                <button class="btn">=</button>
+            <div class="signs">
+                <div class="operators">
+                    <button class="btn" id="/">÷</button>
+                    <button class="btn" id="*">×</button>
+                    <button class="btn" id="-">-</button>
+                    <button class="btn" id="+">+</button>
+                </div>
+                <button class="btn calculate" id="=">=</button>
             </div>
         </div>
     </div>
