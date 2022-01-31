@@ -5,7 +5,7 @@ Created with HTML, CSS and JS.
 
 Functionalities:
 
-⋅⋅* add
-⋅⋅* subtract
-⋅⋅* multiply
-⋅⋅* divide
++ add
++ subtract
++ multiply
++ divide
