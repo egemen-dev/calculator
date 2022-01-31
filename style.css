@@ -42,8 +42,11 @@ body {
 }
 
 .screen{
-    width: 320px;
+    width: 306px;
     word-wrap: break-word;
+    padding: 2%;
+    color: white;
+    font-size: 36px;
 }
 
 .screen-down{
