@@ -1,18 +1,10 @@
 const calculateButton = document.querySelector(".calculate")
-const screenDown = document.querySelector(".screen-down")
-const allButtons = document.querySelector(".buttons-div")
 const operators = document.querySelector(".operators")
 const allNums = document.querySelector(".num-related")
+const backSpace = document.querySelector(".backspace")
 const ACButton = document.querySelector(".AC")
 const screen = document.querySelector(".screen")
 const body = document.querySelector("body")
-
-
-// body.addEventListener("keydown", function(e) {
-//     input.push(e.key)
-//     noComa = input.join("")
-//     console.log(screen.innerText = noComa)
-// });
 
 
 // inputArray gets the input before and after (operator sign) clicked. When operator clicked, the value being sent
@@ -30,83 +22,135 @@ function input(){
 
         // Gets rid of the comas inside inputArray before turn the input to a Number. 
         joinedInputArray = inputArray.join("")
-        console.log(joinedInputArray)
-        console.log("screen:", screen.innerText = screen.innerText + buttonValue)
+        screen.innerText = screen.innerText + buttonValue
+
+        console.log("inputArray:", inputArray)
+        console.log("joinedInputArray:", joinedInputArray)
+
     });  
 };
 
 
-console.log(input())
-
-
 function operatorSign(){
     operators.addEventListener("click", function(e){
-
+        
         // (String -> Number) When any operator sign is clicked, joinedInputArray[0] turns to Number.
-        finalInput = Number(joinedInputArray)
-        // It is ready to be used in final step, so I store the it in actionsArray.
-        actionsArray.push(finalInput)
-        // Clean the inputArray.
+        if (joinedInputArray.length !== 0)  {
+            console.log(joinedInputArray.length)
+            finalInput = Number(joinedInputArray)
+            // It is ready to be used in final step, so I store the it in actionsArray.
+            actionsArray.push(finalInput)
+        };
+
+        // Clean the arrays.
+        finalInput = []
         inputArray = []
+        joinedInputArray = []
 
         signInput = e.target.id
-        console.log("for function", signInput)
         actionsArray.push(signInput)
-        console.log(screen.innerText = screen.innerText + signInput)
-        console.log(actionsArray)
+        screen.innerText = screen.innerText + signInput
+        
+        console.log("actionsArray:", actionsArray)
+        // Calculator only evaluates single pair of number at a time. 
+        
+        if (actionsArray.length > 3) {
+            a = actionsArray[0]
+            b = actionsArray[2]
+            operator = actionsArray[1]
+            result = operate(a, operator, b)
+            
+            screen.innerText = result
+            
+            // Clean the first two arrays for fresh input after the calculation.
+            actionsArray = []
+            
+            actionsArray.push(result)
+            actionsArray.push(signInput)
+            screen.innerText = result + signInput
+            console.log("acitonsArray:", actionsArray)
+        }
     });
 };
-console.log(operatorSign())
+
+
+calculateButton.addEventListener("click", function(){
+
+    console.log("inputArray:", inputArray)
+    console.log("joinedInputArray:", joinedInputArray)
+    console.log("finalInput:", finalInput)
+    console.log("actionsArray:", actionsArray)
     
+    // (String -> Number) When "=" is clicked, joinedInputArray[0] turns to Number.
+    finalInput = Number(joinedInputArray)
     
+    // It's ready to be used in final, so I append finalInput to the actionsArray after the operator sign.
+    actionsArray.push(finalInput)
+    console.log("actionsArray:", actionsArray)
+
+    // Clean the arrays.
+    finalInput = []
+    inputArray = []
+    joinedInputArray = []
+    
+    a = actionsArray[0]
+    b = actionsArray[2]
+    operator = actionsArray[1]
+    result = operate(a, operator, b)
+    
+    screen.innerText = result
+    
+    // Clean the actionsArray.
+    actionsArray = []
+    console.log("actionsArray:", actionsArray)
+    inputArray.push(result)
+    actionsArray.push(result)
+
+    console.log("actionsArray:", actionsArray)
+});
+
+
+// Clean all existing Data.
+ACButton.addEventListener("click", function() {
+    
+    inputArray = []
+    finalInput = []
+    actionsArray = []
+    joinedInputArray = []
+    screen.innerText = ""
+    
+});
+
+
+backSpace.addEventListener("click", function() {
+
+    console.log("inputArray:", inputArray)
+    console.log("joinedInputArray:", joinedInputArray)
+    console.log("actionsArray:", actionsArray)
+    
+    joinedInputArray = []
+    console.log(inputArray.pop())
+    console.log(actionsArray.pop())
+
+    console.log(actionsArray[actionsArray.length-1])
+    screen.innerText = actionsArray.join("")
+    
+    console.log("inputArray:", inputArray)
+    console.log("actionsArray:", actionsArray)
+});
+
+
 function add(a, b) {return a + b};
 function subtract(a, b) {return a - b};
 function multiply(a, b) {return a * b};
-function divide(a, b) {return a / b};
+function divide(a, b) {return +((a / b).toFixed(2))};
 
 function operate(a, operator, b){
-    
     if (operator == "+") {return add(a,b)} 
     else if (operator == "-") {return subtract(a,b)}
     else if (operator == "*") {return multiply(a,b)}
     else if (operator == "/") {return divide(a,b)}
 };
 
-
-calculateButton.addEventListener("click", function(){
-
-    // (String -> Number) When "=" is clicked, joinedInputArray[0] turns to Number.
-    finalInput = Number(joinedInputArray)
-
-    // It's ready to be used in final, so I append finalInput to the actionsArray after the operator sign.
-    actionsArray.push(finalInput)
-    finalInput = []
-    inputArray = []
-    console.log(inputArray, finalInput)
-    
-    a = actionsArray[0]
-    b = actionsArray[2]
-    operator = actionsArray[1]
-    result = operate(a, operator, b)
-
-    screen.innerText = result
-
-    // Clean the actionsArray.
-    actionsArray = []
-
-    inputArray.push(result)
-    console.log(actionsArray)
-
-});
-
-
-// Clean all existing Data.
-ACButton.addEventListener("click", function() {
-
-    inputArray = []
-    finalInput = []
-    actionsArray = []
-    joinedInputArray = []
-    screen.innerText = ""
-
-});
+input()
+operatorSign()
